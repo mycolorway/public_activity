@@ -223,15 +223,17 @@ module PublicActivity
       raw_options = args.extract_options!
       action      = [args.first, raw_options.delete(:action)].compact.first
       key         = prepare_key(action, raw_options)
+      opposite_key = prepare_key(raw_options[:opposite_action], raw_options)
 
       raise NoKeyProvided, "No key provided for #{self.class.name}" unless key
 
       prepare_custom_fields(raw_options.except(:parameters, :params)).merge(
         {
-          key:        key,
-          owner:      prepare_relation(:owner,     raw_options),
-          recipient:  prepare_relation(:recipient, raw_options),
-          parameters: prepare_parameters(raw_options.delete(:parameters)),
+          key:          key,
+          opposite_key: opposite_key,
+          owner:        prepare_relation(:owner,     raw_options),
+          recipient:    prepare_relation(:recipient, raw_options),
+          parameters:   prepare_parameters(raw_options.delete(:parameters)),
         }
       )
     end

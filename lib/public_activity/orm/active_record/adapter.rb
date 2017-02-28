@@ -8,6 +8,7 @@ module PublicActivity
       class Adapter
         # Creates the activity on `trackable` with `options`
         def self.create_activity(trackable, options)
+          trackable.activities.where(key: options[:opposite_key]).destroy_all if options[:opposite_key]
           trackable.activities.create options
         end
       end
