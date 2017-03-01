@@ -9,7 +9,7 @@ module PublicActivity
         # Creates the activity on `trackable` with `options`
         def self.create_activity(trackable, options)
           trackable.activities.where(key: options[:opposite_key]).destroy_all if options[:opposite_key]
-          trackable.activities.create options
+          trackable.activities.create options.except(:opposite_key)
         end
       end
     end
