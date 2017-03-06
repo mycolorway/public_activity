@@ -4,6 +4,7 @@ module PublicActivity
       # The ActiveRecord model containing
       # details about recorded activity.
       class Activity < ::ActiveRecord::Base
+        acts_as_paranoid
         include Renderable
         self.table_name = PublicActivity.config.table_name
 
