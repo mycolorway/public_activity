@@ -19,6 +19,7 @@ require 'public_activity'
 require 'public_activity/testing'
 require 'pry'
 require 'minitest/autorun'
+require 'paranoia'
 
 ENV['PA_ORM'] ||= "active_record"
 PublicActivity.configure do |config|
