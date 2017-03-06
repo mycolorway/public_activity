@@ -8,6 +8,7 @@ class CreateActivities < ActiveRecord::Migration
       t.belongs_to :recipient, :polymorphic => true
       t.string  :key
       t.text    :parameters
+      t.boolean :visible, :default => false
       t.datetime :deleted_at
 
       t.timestamps null: false
