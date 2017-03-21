@@ -6,6 +6,8 @@ class CreateActivities < ActiveRecord::Migration
       t.belongs_to :trackable, :polymorphic => true
       t.belongs_to :owner, :polymorphic => true
       t.belongs_to :recipient, :polymorphic => true
+      t.belongs_to :ancestor, :polymorphic => true
+      t.belongs_to :team
       t.string  :key
       t.text    :parameters
       t.boolean :visible, :default => false

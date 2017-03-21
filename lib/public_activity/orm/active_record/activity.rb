@@ -8,6 +8,7 @@ module PublicActivity
         include Renderable
         self.table_name = PublicActivity.config.table_name
 
+        belongs_to :team
         # Define polymorphic association to the parent
         belongs_to :trackable, :polymorphic => true
         with_options(::ActiveRecord::VERSION::MAJOR >= 5 ? { :required => false } : { }) do
@@ -15,6 +16,8 @@ module PublicActivity
           belongs_to :owner, :polymorphic => true
           # Define ownership to a resource targeted by this activity
           belongs_to :recipient, :polymorphic => true
+          # Define ownership to a resource ancestored by this activity
+          belongs_to :ancestor, :polymorphic => true
         end
         # Serialize parameters Hash
         serialize :parameters, Hash
