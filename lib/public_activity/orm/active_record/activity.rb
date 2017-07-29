@@ -13,7 +13,7 @@ module PublicActivity
         belongs_to :trackable, -> { with_deleted }, :polymorphic => true
         with_options(::ActiveRecord::VERSION::MAJOR >= 5 ? { :required => false } : { }) do
           # Define ownership to a resource responsible for this activity
-          belongs_to :owner, :polymorphic => true
+          belongs_to :owner, -> { with_deleted }, :polymorphic => true
           # Define ownership to a resource targeted by this activity
           belongs_to :recipient, :polymorphic => true
           # Define ownership to a resource ancestored by this activity
